@@ -1,19 +1,18 @@
-//
-//  ViewController.swift
-//  WeebDeck
-//
-//  Created by Pixel on 02.07.22.
-//
-
 import UIKit
-
-class ViewController: UIViewController {
-
+import WebKit
+class ViewController: UIViewController, WKUIDelegate {
+    
+    var webView: WKWebView!
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let req = URLRequest(url: URL(string:"https://tweetdeck.twitter.com")!)
+        webView.load(req)
     }
-
-
 }
-
